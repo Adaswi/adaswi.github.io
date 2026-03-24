@@ -112,7 +112,6 @@ function formatDate(d) {
 }
 
 function formatLocalDate(d) {
-    // Returns YYYY-MM-DD in local timezone
     const year = d.getFullYear();
     const month = String(d.getMonth() + 1).padStart(2, '0');
     const day = String(d.getDate()).padStart(2, '0');
@@ -151,18 +150,16 @@ function loadSchedule() {
     const weekStart = new Date(startStr);
     const schedule = {};
 
-    // Determine default schedule for the week
     const weekNum = getWeekNumber(weekStart);
     const defaultSchedule = weekNum % 2 === 0 ? evenWeekSchedule : oddWeekSchedule;
 
-    // Build schedule day by day
     days.forEach((dayName, i) => {
         const dayDate = new Date(weekStart);
         dayDate.setDate(dayDate.getDate() + i);
         const dayKey = formatLocalDate(dayDate);
 
         if (customDays[dayKey]) {
-            schedule[dayName] = customDays[dayKey]; // use custom day
+            schedule[dayName] = customDays[dayKey];
         } else {
             schedule[dayName] = defaultSchedule[dayName] || [];
         }
@@ -177,12 +174,14 @@ function timeToMinutes(time) {
     return h * 60 + m;
 }
 
-// ===== RENDER TIMETABLE =====
+// ===== RENDER TIMETABLE + SUMMARY =====
 function renderSchedule(schedule) {
     const timeCol = document.getElementById("timeColumn");
     const daysCol = document.getElementById("daysContainer");
     timeCol.innerHTML = "";
     daysCol.innerHTML = "";
+
+    const activityTotals = {}; // { "Math": totalMinutes }
 
     // full hours labels
     for (let h = startHour; h <= endHour; h++) {
@@ -212,21 +211,60 @@ function renderSchedule(schedule) {
         lessons.forEach(lesson => {
             const startMin = timeToMinutes(lesson.start) - startHour * 60;
             const endMin = timeToMinutes(lesson.end) - startHour * 60;
+            const durationMin = endMin - startMin;
             const topPx = startMin / totalMinutes * containerHeight;
-            const heightPx = (endMin - startMin) / totalMinutes * containerHeight;
+            const heightPx = durationMin / totalMinutes * containerHeight;
+
+            // accumulate weekly totals
+            if (activityTotals[lesson.name]) activityTotals[lesson.name] += durationMin;
+            else activityTotals[lesson.name] = durationMin;
 
             const block = document.createElement("div");
             block.className = "block";
             block.style.top = topPx + "px";
             block.style.height = heightPx + "px";
             block.style.backgroundColor = lesson.color || "#d1e7dd";
-            block.textContent = lesson.name;
+            const hoursStr = (durationMin / 60).toFixed(2) + "h";
+            block.textContent = `${lesson.name} (${hoursStr})`;
 
             dayDiv.appendChild(block);
         });
 
         daysCol.appendChild(dayDiv);
     });
+
+    // ===== Render Summary =====
+    let summaryDiv = document.getElementById("summaryDiv");
+    if (!summaryDiv) {
+        summaryDiv = document.createElement("div");
+        summaryDiv.id = "summaryDiv";
+        summaryDiv.style.marginTop = "20px";
+        document.body.appendChild(summaryDiv);
+    }
+
+    summaryDiv.innerHTML = "<h3>Weekly Activity Summary</h3>";
+    const table = document.createElement("table");
+    table.style.borderCollapse = "collapse";
+    table.style.width = "50%";
+    const tbody = document.createElement("tbody");
+
+    for (const [name, minutes] of Object.entries(activityTotals)) {
+        const tr = document.createElement("tr");
+        const tdName = document.createElement("td");
+        tdName.textContent = name;
+        tdName.style.border = "1px solid #ccc";
+        tdName.style.padding = "4px";
+        const tdHours = document.createElement("td");
+        tdHours.textContent = (minutes / 60).toFixed(2) + " h";
+        tdHours.style.border = "1px solid #ccc";
+        tdHours.style.padding = "4px";
+        tr.appendChild(tdName);
+        tr.appendChild(tdHours);
+        tbody.appendChild(tr);
+    }
+
+    table.appendChild(tbody);
+    summaryDiv.appendChild(table);
 }
 
 // ===== INIT =====
