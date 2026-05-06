@@ -54,6 +54,10 @@ const customDays = {
         { start: "07:30", end: "13:30", name: "Work", color: "#acf5a6" },
         { start: "14:00", end: "19:00", name: "School", color: "#f27168" },
     ],
+    "2026-04-02": [
+        { start: "06:00", end: "10:00", name: "Work", color: "#acf5a6" },
+        { start: "12:00", end: "18:00", name: "School", color: "#f27168" },
+    ],
     "2026-04-03": [
         { start: "07:30", end: "16:30", name: "Work", color: "#acf5a6" },
     ],
@@ -61,8 +65,38 @@ const customDays = {
     "2026-04-07": [
         { start: "07:30", end: "16:30", name: "Work", color: "#acf5a6" },
     ],
+    "2026-04-09": [
+        { start: "06:00", end: "13:00", name: "Work", color: "#acf5a6" },
+        { start: "14:00", end: "16:00", name: "School", color: "#f27168" },
+    ],
     "2026-04-10": [
-        { start: "09:00", end: "18:00", name: "School", color: "#f27168" },
+        { start: "07:30", end: "10:30", name: "Work", color: "#acf5a6" },
+        { start: "11:00", end: "14:00", name: "School", color: "#f27168" },
+        { start: "14:30", end: "16:30", name: "Work", color: "#acf5a6" },
+    ],
+    "2026-04-14": [
+        { start: "07:30", end: "14:30", name: "Work", color: "#acf5a6" },
+        { start: "15:00", end: "17:00", name: "School", color: "#f27168" },
+    ],
+    "2026-04-16": [
+        { start: "06:00", end: "09:00", name: "Work", color: "#acf5a6" },
+        { start: "09:30", end: "10:30", name: "School", color: "#f27168" },
+        { start: "11:10", end: "13:10", name: "Work", color: "#acf5a6" },
+        { start: "14:00", end: "18:00", name: "School", color: "#f27168" },
+    ],
+    "2026-04-22": [
+        { start: "07:30", end: "12:30", name: "Work", color: "#acf5a6" },
+        { start: "13:00", end: "18:00", name: "School", color: "#f27168" },
+    ],
+    "2026-04-23": [
+        { start: "06:00", end: "09:00", name: "Work", color: "#acf5a6" },
+        { start: "09:30", end: "11:00", name: "School", color: "#f27168" },
+        { start: "11:30", end: "13:30", name: "Work", color: "#acf5a6" },
+        { start: "14:00", end: "16:00", name: "School", color: "#f27168" },
+    ],
+    "2026-04-24": [
+        { start: "06:00", end: "13:00", name: "Work", color: "#acf5a6" },
+        { start: "14:00", end: "16:00", name: "School", color: "#f27168" },
     ],
     "2026-04-24": [
         { start: "06:00", end: "09:00", name: "Work", color: "#acf5a6" },
@@ -70,9 +104,9 @@ const customDays = {
     ],
     "2026-05-01": [],
     "2026-05-06": [
-        { start: "9:00", end: "12:00", name: "School", color: "#f27168" },
-        { start: "12:00", end: "14:00", name: "Work", color: "#acf5a6" },
-        { start: "14:00", end: "18:00", name: "School", color: "#f27168" },
+        { start: "9:00", end: "12:30", name: "School", color: "#f27168" },
+        { start: "13:00", end: "15:00", name: "Work", color: "#acf5a6" },
+        { start: "15:15", end: "18:00", name: "School", color: "#f27168" },
     ],
     "2026-05-07": [
         { start: "06:30", end: "11:30", name: "Work", color: "#acf5a6" },
