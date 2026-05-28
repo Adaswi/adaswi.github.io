@@ -138,10 +138,6 @@ const customDays = {
         { start: "07:30", end: "12:30", name: "Work", color: "#acf5a6" },
         { start: "13:00", end: "17:00", name: "School", color: "#f27168" },
     ],
-    "2026-05-29": [
-        { start: "06:00", end: "09:00", name: "Work", color: "#acf5a6" },
-        { start: "9:30", end: "18:00", name: "School", color: "#f27168" },
-    ],
     "2026-06-02": [
         { start: "07:30", end: "12:30", name: "Work", color: "#acf5a6" },
         { start: "13:00", end: "19:00", name: "School", color: "#f27168" },
