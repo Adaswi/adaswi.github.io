@@ -4,154 +4,44 @@ const totalMinutes = (endHour - startHour) * 60;
 const containerHeight = 840; // px for full day
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-// ===== DEFAULT EVEN / ODD WEEK SCHEDULE =====
-const evenWeekSchedule = {
-    "Monday": [
-        { start: "07:30", end: "16:30", name: "Work", color: "#acf5a6" },
-    ],
-    "Tuesday": [
-        { start: "07:30", end: "13:30", name: "Work", color: "#acf5a6" },
-        { start: "14:00", end: "17:00", name: "School", color: "#f27168" },
-    ],
-    "Wednesday": [
-        { start: "07:30", end: "10:30", name: "Work", color: "#acf5a6" },
-        { start: "11:00", end: "18:00", name: "School", color: "#f27168" },
-    ],
-    "Thursday": [
-        { start: "06:00", end: "09:00", name: "Work", color: "#acf5a6" },
-        { start: "9:30", end: "18:00", name: "School", color: "#f27168" },
-    ],
-    "Friday": [
-        { start: "07:30", end: "16:30", name: "Work", color: "#acf5a6" },
-    ],
-};
-
-const oddWeekSchedule = {
-    "Monday": [
-        { start: "07:30", end: "16:30", name: "Work", color: "#acf5a6" },
-    ],
-    "Tuesday": [
-        { start: "07:30", end: "13:30", name: "Work", color: "#acf5a6" },
-        { start: "14:00", end: "19:00", name: "School", color: "#f27168" },
-    ],
-    "Wednesday": [
-        { start: "09:00", end: "18:00", name: "School", color: "#f27168" },
-    ],
-    "Thursday": [
-        { start: "06:00", end: "09:00", name: "Work", color: "#acf5a6" },
-        { start: "9:30", end: "16:00", name: "School", color: "#f27168" },
-    ],
-    "Friday": [
-        { start: "07:30", end: "16:30", name: "Work", color: "#acf5a6" },
-    ],
-};
-
-// ===== CUSTOM DAYS =====
-// Override only these specific dates
-const customDays = {
-    "2026-03-23": [],
-    "2026-03-27": [
-        { start: "07:30", end: "13:30", name: "Work", color: "#acf5a6" },
-        { start: "14:00", end: "19:00", name: "School", color: "#f27168" },
-    ],
-    "2026-04-02": [
-        { start: "06:00", end: "10:00", name: "Work", color: "#acf5a6" },
-        { start: "12:00", end: "18:00", name: "School", color: "#f27168" },
-    ],
-    "2026-04-03": [
-        { start: "07:30", end: "16:30", name: "Work", color: "#acf5a6" },
-    ],
-    "2026-04-06": [],
-    "2026-04-07": [
-        { start: "07:30", end: "16:30", name: "Work", color: "#acf5a6" },
-    ],
-    "2026-04-09": [
-        { start: "06:00", end: "13:00", name: "Work", color: "#acf5a6" },
-        { start: "14:00", end: "16:00", name: "School", color: "#f27168" },
-    ],
-    "2026-04-10": [
-        { start: "07:30", end: "10:30", name: "Work", color: "#acf5a6" },
-        { start: "11:00", end: "14:00", name: "School", color: "#f27168" },
-        { start: "14:30", end: "16:30", name: "Work", color: "#acf5a6" },
-    ],
-    "2026-04-14": [
-        { start: "07:30", end: "14:30", name: "Work", color: "#acf5a6" },
-        { start: "15:00", end: "17:00", name: "School", color: "#f27168" },
-    ],
-    "2026-04-16": [
-        { start: "06:00", end: "09:00", name: "Work", color: "#acf5a6" },
-        { start: "09:30", end: "10:30", name: "School", color: "#f27168" },
-        { start: "11:10", end: "13:10", name: "Work", color: "#acf5a6" },
-        { start: "14:00", end: "18:00", name: "School", color: "#f27168" },
-    ],
-    "2026-04-22": [
-        { start: "07:30", end: "12:30", name: "Work", color: "#acf5a6" },
-        { start: "13:00", end: "18:00", name: "School", color: "#f27168" },
-    ],
-    "2026-04-23": [
-        { start: "06:00", end: "09:00", name: "Work", color: "#acf5a6" },
-        { start: "09:30", end: "11:00", name: "School", color: "#f27168" },
-        { start: "11:30", end: "13:30", name: "Work", color: "#acf5a6" },
-        { start: "14:00", end: "16:00", name: "School", color: "#f27168" },
-    ],
-    "2026-04-24": [
-        { start: "06:00", end: "13:00", name: "Work", color: "#acf5a6" },
-        { start: "14:00", end: "16:00", name: "School", color: "#f27168" },
-    ],
-    "2026-04-24": [
-        { start: "06:00", end: "09:00", name: "Work", color: "#acf5a6" },
-        { start: "9:30", end: "16:00", name: "School", color: "#f27168" },
-    ],
-    "2026-05-01": [],
-    "2026-05-06": [
-        { start: "9:00", end: "12:30", name: "School", color: "#f27168" },
-        { start: "13:00", end: "15:00", name: "Work", color: "#acf5a6" },
-        { start: "15:15", end: "18:00", name: "School", color: "#f27168" },
-    ],
-    "2026-05-07": [
-        { start: "06:30", end: "11:30", name: "Work", color: "#acf5a6" },
-        { start: "12:00", end: "16:00", name: "School", color: "#f27168" },
-    ],
-    "2026-05-08": [
-        { start: "07:30", end: "11:30", name: "Work", color: "#acf5a6" },
-        { start: "12:00", end: "17:00", name: "School", color: "#f27168" },
-    ],
-    "2026-05-12": [
-        { start: "07:30", end: "14:30", name: "Work", color: "#acf5a6" },
-        { start: "15:00", end: "17:00", name: "School", color: "#f27168" },
-    ],
-    "2026-05-13": [
-        { start: "07:30", end: "16:30", name: "Work", color: "#acf5a6" },
-    ],
-    "2026-05-15": [
-        { start: "07:30", end: "10:30", name: "Work", color: "#acf5a6" },
-        { start: "11:00", end: "18:00", name: "School", color: "#f27168" },
-    ],
-    "2026-05-19": [
-        { start: "07:30", end: "14:30", name: "Work", color: "#acf5a6" },
-        { start: "15:00", end: "19:00", name: "School", color: "#f27168" },
-    ],
-    "2026-05-25": [
-        { start: "07:30", end: "16:30", name: "Work", color: "#acf5a6" },
-    ],
-    "2026-05-26": [
-        { start: "07:30", end: "12:30", name: "Work", color: "#acf5a6" },
-        { start: "13:00", end: "17:00", name: "School", color: "#f27168" },
-    ],
-    "2026-06-02": [
-        { start: "07:30", end: "12:30", name: "Work", color: "#acf5a6" },
-        { start: "13:00", end: "19:00", name: "School", color: "#f27168" },
-    ],
-    "2026-06-04": [],
-    "2026-06-05": [
-        { start: "07:30", end: "16:30", name: "Work", color: "#acf5a6" },
-    ],
-    "2026-06-19": [
-    ],
-};
-
+// ===== PERSON DATA =====
+let currentPerson = "adaswi";
+let personData = {};
+let evenWeekSchedule = {};
+let oddWeekSchedule = {};
+let customDays = {};
 const startRange = new Date("2026-03-24");
 const endRange = new Date("2026-06-28");
+
+// ===== LOAD PERSON DATA FROM JSON =====
+async function loadPersonData(personName) {
+    try {
+        const response = await fetch(`${personName}.json`);
+        const data = await response.json();
+        evenWeekSchedule = data.evenWeekSchedule || {};
+        oddWeekSchedule = data.oddWeekSchedule || {};
+        customDays = data.customDays || {};
+        return true;
+    } catch (error) {
+        console.error(`Failed to load ${personName}.json:`, error);
+        return false;
+    }
+}
+
+function switchPerson(personName) {
+    currentPerson = personName;
+    
+    // Update button states
+    document.getElementById("adaswiBtn").classList.remove("active");
+    document.getElementById("aleksBtn").classList.remove("active");
+    document.getElementById(personName + "Btn").classList.add("active");
+    
+    // Reload schedule with new person's data
+    loadPersonData(personName).then(() => {
+        generateWeeks();
+        loadSchedule();
+    });
+}
 
 // ===== HELPERS =====
 function getMonday(date) {
@@ -344,7 +234,10 @@ function renderSchedule(schedule) {
 
 
 // ===== INIT =====
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
+    // Load initial person data
+    await loadPersonData(currentPerson);
+    
     generateWeeks();
     const select = document.getElementById("weekSelect");
 
@@ -357,4 +250,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     loadSchedule();
     select.addEventListener("change", loadSchedule);
+    
+    // Add event listeners for person buttons
+    document.getElementById("adaswiBtn").addEventListener("click", () => switchPerson("adaswi"));
+    document.getElementById("aleksBtn").addEventListener("click", () => switchPerson("aleks"));
 });
