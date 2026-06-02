@@ -64,13 +64,43 @@
             box-sizing: border-box;
             border-radius: 4px;
         }
+
+        .person-btn {
+            padding: 8px 16px;
+            margin: 0 5px;
+            font-size: 14px;
+            border: 2px solid #ccc;
+            background-color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .person-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .person-btn.active {
+            background-color: #007acc;
+            color: white;
+            border-color: #007acc;
+        }
     </style>
 </head>
 <body>
 
     <h2>Schedule</h2>
-    <label>Select week:</label>
-    <select id="weekSelect"></select>
+    
+    <div style="margin-bottom: 20px;">
+        <label style="margin-right: 15px;">Select person:</label>
+        <button id="adaswiBtn" class="person-btn active">AB</button>
+        <button id="aleksBtn" class="person-btn">AK</button>
+    </div>
+
+    <div>
+        <label>Select week:</label>
+        <select id="weekSelect"></select>
+    </div>
 
     <div class="schedule-container" id="scheduleContainer">
         <div class="time-column" id="timeColumn"></div>
