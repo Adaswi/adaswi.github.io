@@ -31,14 +31,20 @@ async function loadPersonData(personName) {
 function switchPerson(personName) {
     currentPerson = personName;
     
-    // Update button states
     document.getElementById("adaswiBtn").classList.remove("active");
     document.getElementById("aleksBtn").classList.remove("active");
     document.getElementById(personName + "Btn").classList.add("active");
+
+    const select = document.getElementById("weekSelect");
+    const selectedIndex = select.selectedIndex;
     
-    // Reload schedule with new person's data
     loadPersonData(personName).then(() => {
         generateWeeks();
+        if (selectedIndex >= 0 && selectedIndex < select.options.length) {
+            select.selectedIndex = selectedIndex;
+        } else {
+            select.selectedIndex = 0;
+        }
         loadSchedule();
     });
 }
