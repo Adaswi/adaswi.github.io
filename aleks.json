@@ -54,11 +54,11 @@
         "2026-06-04": [
         ],
         "2026-06-05": [
-            { "start": "09:00", "end": "13:30", "name": "Work", "color": "#acf5a6" }
+            { "start": "09:00", "end": "17:30", "name": "Work", "color": "#acf5a6" }
         ],
         "2026-06-09": [
-            { "start": "08:00", "end": "12:00", "name": "School", "color": "#f27168" },
-            { "start": "12:30", "end": "18:00", "name": "Work", "color": "#acf5a6" }
+            { "start": "08:00", "end": "14:00", "name": "School", "color": "#f27168" },
+            { "start": "14:30", "end": "19:00", "name": "Work", "color": "#acf5a6" }
         ],
         "2026-06-10": [
             { "start": "08:00", "end": "12:00", "name": "School", "color": "#f27168" },
