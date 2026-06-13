@@ -1,66 +1,66 @@
 {
     "evenWeekSchedule": {
         "Monday": [
-            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#66fb75" }
+            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#90ff9b" }
         ],
         "Tuesday": [
-            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#66fb75" }
+            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#90ff9b" }
         ],
         "Wednesday": [
-            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#66fb75" }
+            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#90ff9b" }
         ],
         "Thursday": [
-            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#66fb75" }
+            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#90ff9b" }
         ],
         "Friday": [
-            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#66fb75" }
+            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#90ff9b" }
         ]
     },
     "oddWeekSchedule": {
         "Monday": [
-            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#66fb75" }
+            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#90ff9b" }
         ],
         "Tuesday": [
-            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#66fb75" }
+            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#90ff9b" }
         ],
         "Wednesday": [
-            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#66fb75" }
+            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#90ff9b" }
         ],
         "Thursday": [
-            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#66fb75" }
+            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#90ff9b" }
         ],
         "Friday": [
-            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#66fb75" }
+            { "start": "08:50", "end": "16:50", "name": "Work", "color": "#90ff9b" }
         ]
     },
     "customDays": {
         "2026-06-01": [
             { "start": "08:00", "end": "16:00", "name": "School", "color": "#fb6666" },
-            { "start": "16:30", "end": "19:00", "name": "Work", "color": "#66fb75" }
+            { "start": "16:30", "end": "19:00", "name": "Work", "color": "#90ff9b" }
         ],
         "2026-06-02": [
             { "start": "07:00", "end": "17:00", "name": "Unavailable", "color": "#bfb7b6" }
         ],
         "2026-06-03": [
             { "start": "08:00", "end": "14:00", "name": "School", "color": "#fb6666" },
-            { "start": "14:30", "end": "18:30", "name": "Work", "color": "#66fb75" }
+            { "start": "14:30", "end": "18:30", "name": "Work", "color": "#90ff9b" }
         ],
         "2026-06-04": [
         ],
         "2026-06-05": [
-            { "start": "09:00", "end": "17:30", "name": "Work", "color": "#66fb75" }
+            { "start": "09:00", "end": "17:30", "name": "Work", "color": "#90ff9b" }
         ],
         "2026-06-09": [
             { "start": "08:00", "end": "14:00", "name": "School", "color": "#fb6666" },
-            { "start": "14:30", "end": "19:00", "name": "Work", "color": "#66fb75" }
+            { "start": "14:30", "end": "19:00", "name": "Work", "color": "#90ff9b" }
         ],
         "2026-06-10": [
             { "start": "08:00", "end": "14:00", "name": "School", "color": "#fb6666" },
-            { "start": "14:30", "end": "18:00", "name": "Work", "color": "#66fb75" }
+            { "start": "14:30", "end": "18:00", "name": "Work", "color": "#90ff9b" }
         ],
         "2026-06-12": [
             { "start": "08:00", "end": "11:00", "name": "School", "color": "#fb6666" },
-            { "start": "11:30", "end": "18:00", "name": "Work", "color": "#66fb75" }
+            { "start": "11:30", "end": "18:00", "name": "Work", "color": "#90ff9b" }
         ],
         "2026-06-15": [
             { "start": "08:00", "end": "16:00", "name": "School", "color": "#fb6666" }
