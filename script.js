@@ -11,7 +11,7 @@ let evenWeekSchedule = {};
 let oddWeekSchedule = {};
 let customDays = {};
 const startRange = new Date("2026-03-24");
-const endRange = new Date("2026-06-28");
+const endRange = new Date("2026-06-14");
 
 // ===== LOAD PERSON DATA FROM JSON =====
 async function loadPersonData(personName) {
