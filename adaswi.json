@@ -22,7 +22,7 @@
     },
     "oddWeekSchedule": {
         "Monday": [
-            { "start": "07:30", "end": "15:30", "name": "Work", "color": "#acf5a6" }
+            { "start": "07:30", "end": "15:30", "name": "Work", "color": "#acf5a6" },
             { "start": "16:00", "end": "19:00", "name": "School", "color": "#f27168" }
         ],
         "Tuesday": [
