@@ -10,8 +10,8 @@ let personData = {};
 let evenWeekSchedule = {};
 let oddWeekSchedule = {};
 let customDays = {};
-const startRange = new Date("2026-03-24");
-const endRange = new Date("2026-06-21");
+const startRange = new Date("2026-09-28");
+const endRange = new Date("2027-02-07");
 
 // ===== LOAD PERSON DATA FROM JSON =====
 async function loadPersonData(personName) {
