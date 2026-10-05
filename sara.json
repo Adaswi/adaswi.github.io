@@ -1,7 +1,7 @@
 {
     "evenWeekSchedule": {
         "Monday": [
-            { "start": "08:00", "end": "16:00", "name": "Work", "color": "#acf5a6" },
+            { "start": "08:00", "end": "16:00", "name": "Work", "color": "#acf5a6" }
         ],
         "Tuesday": [
 
@@ -18,7 +18,7 @@
     },
     "oddWeekSchedule": {
         "Monday": [
-            { "start": "08:00", "end": "16:00", "name": "Work", "color": "#acf5a6" },
+            { "start": "08:00", "end": "16:00", "name": "Work", "color": "#acf5a6" }
         ],
         "Tuesday": [
 
