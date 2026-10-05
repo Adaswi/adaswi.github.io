@@ -33,6 +33,7 @@ function switchPerson(personName) {
     
     document.getElementById("adaswiBtn").classList.remove("active");
     document.getElementById("aleksBtn").classList.remove("active");
+    document.getElementById("saraBtn").classList.remove("active");
     document.getElementById(personName + "Btn").classList.add("active");
 
     const select = document.getElementById("weekSelect");
@@ -260,4 +261,5 @@ window.addEventListener("DOMContentLoaded", async () => {
     // Add event listeners for person buttons
     document.getElementById("adaswiBtn").addEventListener("click", () => switchPerson("adaswi"));
     document.getElementById("aleksBtn").addEventListener("click", () => switchPerson("aleks"));
+    document.getElementById("aleksBtn").addEventListener("click", () => switchPerson("sara"));
 });
