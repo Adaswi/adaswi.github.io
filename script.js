@@ -261,5 +261,5 @@ window.addEventListener("DOMContentLoaded", async () => {
     // Add event listeners for person buttons
     document.getElementById("adaswiBtn").addEventListener("click", () => switchPerson("adaswi"));
     document.getElementById("aleksBtn").addEventListener("click", () => switchPerson("aleks"));
-    document.getElementById("aleksBtn").addEventListener("click", () => switchPerson("sara"));
+    document.getElementById("saraBtn").addEventListener("click", () => switchPerson("sara"));
 });
