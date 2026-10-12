@@ -1,8 +1,8 @@
 {
     "oddWeekSchedule": {
         "Monday": [
-            { "start": "10:00", "end": "16:00", "name": "School", "color": "#fb6666" },
-            { "start": "16:15", "end": "19:00", "name": "Work", "color": "#90ff9b" }
+            { "start": "08:00", "end": "12:00", "name": "School", "color": "#fb6666" },
+            { "start": "12:15", "end": "19:00", "name": "Work", "color": "#90ff9b" }
         ],
         "Tuesday": [
             { "start": "10:00", "end": "16:00", "name": "School", "color": "#fb6666" },
@@ -23,8 +23,8 @@
     },
     "evenWeekSchedule": {
         "Monday": [
-            { "start": "10:00", "end": "16:00", "name": "School", "color": "#fb6666" },
-            { "start": "16:15", "end": "19:00", "name": "Work", "color": "#90ff9b" }
+            { "start": "08:00", "end": "12:00", "name": "School", "color": "#fb6666" },
+            { "start": "12:15", "end": "19:00", "name": "Work", "color": "#90ff9b" }
         ],
         "Tuesday": [
             { "start": "10:00", "end": "16:00", "name": "School", "color": "#fb6666" },
