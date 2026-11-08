@@ -10,8 +10,8 @@ let personData = {};
 let evenWeekSchedule = {};
 let oddWeekSchedule = {};
 let customDays = {};
-const startRange = new Date("2026-09-28");
-const endRange = new Date("2027-02-07");
+const startRange = new Date(2026, 8, 28);
+const endRange = new Date(2027, 1, 7);
 
 // ===== LOAD PERSON DATA FROM JSON =====
 async function loadPersonData(personName) {
@@ -70,6 +70,15 @@ function formatLocalDate(d) {
     return `${year}-${month}-${day}`;
 }
 
+function parseLocalDate(isoDate) {
+    const [year, month, day] = isoDate.split("-").map(Number);
+    return new Date(year, month - 1, day);
+}
+
+function startOfLocalDay(date) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
 function getWeekNumber(date) {
     const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
     const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
@@ -77,9 +86,9 @@ function getWeekNumber(date) {
 }
 
 function getCurrentWeekValue() {
-    const today = new Date();
+    const today = startOfLocalDay(new Date());
 
-    let current = getMonday(startRange);
+    let current = getMonday(startOfLocalDay(startRange));
 
     while (current <= endRange) {
         const monday = new Date(current);
@@ -119,7 +128,7 @@ function loadSchedule() {
     if (!value) return;
 
     const [startStr] = value.split("_");
-    const weekStart = new Date(startStr);
+    const weekStart = parseLocalDate(startStr);
     const schedule = {};
 
     const weekNum = getWeekNumber(weekStart);
