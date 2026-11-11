@@ -58,9 +58,10 @@
         }
 
         .day-column {
-            border: 1px solid #ccc;
+            border: 1px solid #e6eaee;
             position: relative;
             background: #fff;
+            border-radius: 8px;
         }
 
         .hour-line {
@@ -85,223 +86,334 @@
         }
 
         .person-btn {
-            padding: 8px 16px;
-            margin: 0 5px;
+            padding: 8px 14px;
+            margin: 0 4px;
             font-size: 14px;
-            border: 2px solid #ccc;
-            background-color: #fff;
+            border: 1px solid #e4e8ec;
+            background-color: #f7f8fa;
+            color: #314253;
             cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.2s;
+            border-radius: 10px;
+            transition: background 0.2s ease, color 0.2s ease;
         }
 
         .person-btn:hover {
-            background-color: #f0f0f0;
+            background-color: #eef2f5;
         }
 
         .person-btn.active {
-            background-color: #007acc;
+            background-color: #5d87a8;
             color: white;
-            border-color: #007acc;
+            border-color: transparent;
         }
 
-        .top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
+        .person-row {
             margin-bottom: 20px;
         }
 
+        .person-row::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
         #editBtn {
-            font: inherit;
-            padding: 8px 16px;
-            border: 2px solid #111;
-            border-radius: 4px;
-            background: #fff;
+            float: right;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border: none;
+            border-radius: 10px;
+            background: #eef2f5;
+            color: #3d5166;
             cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
 
         #editBtn:hover {
-            background: #f0f0f0;
+            background: #e4ebf1;
+            transform: translateY(-1px);
         }
 
-        .overlay {
+        .editor {
             position: fixed;
-            inset: 0;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.94);
+            z-index: 30;
+            left: 50%;
+            top: 72px;
+            width: min(380px, calc(100vw - 24px));
+            transform: translateX(-50%);
+            background: #fbfcfd;
+            border-radius: 18px;
+            box-shadow: 0 18px 50px rgba(28, 42, 58, 0.16);
+            color: #243240;
         }
 
-        .overlay[hidden] {
+        .editor[hidden] {
             display: none;
         }
 
-        .sheet {
-            width: min(440px, 100%);
-            background: #fff;
-            border: 1px solid #ccc;
+        .editor-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 8px 0 12px;
+            cursor: grab;
+            user-select: none;
+            touch-action: none;
+        }
+
+        .editor-bar:active {
+            cursor: grabbing;
+        }
+
+        .step-label {
+            font-size: 12px;
+            letter-spacing: 0.04em;
+            color: #7b8b99;
+        }
+
+        #editorClose {
+            width: 28px;
+            height: 28px;
+            border: none;
             border-radius: 8px;
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-            padding: 18px;
+            background: transparent;
+            color: #6d7d8c;
+            cursor: pointer;
+            font-size: 18px;
         }
 
-        .sheet h3 {
-            margin: 0 0 12px;
+        #editorClose:disabled {
+            opacity: 0.35;
+            cursor: default;
         }
 
-        .sheet textarea,
-        .sheet input[type="password"] {
+        .editor-stage {
+            position: relative;
+            padding: 2px 14px 12px;
+            overflow: hidden;
+        }
+
+        .panel {
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+            animation: step-in 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .panel.enter-back {
+            animation-name: step-in-back;
+        }
+
+        .panel h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            font-weight: 650;
+        }
+
+        .panel textarea,
+        .panel input[type="password"] {
             font: inherit;
             width: 100%;
             box-sizing: border-box;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 12px;
+            background: #f1f4f7;
+            color: inherit;
+            outline: none;
+            transition: box-shadow 0.2s ease, background 0.2s ease;
         }
 
-        .sheet textarea {
-            min-height: 110px;
+        .panel textarea:focus,
+        .panel input[type="password"]:focus {
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(93, 135, 168, 0.22);
+        }
+
+        .panel textarea {
+            min-height: 72px;
             resize: vertical;
         }
 
-        .sheet-actions {
+        .panel-actions {
             display: flex;
             justify-content: flex-end;
             gap: 8px;
-            margin-top: 14px;
+            margin-top: 10px;
         }
 
-        .sheet-actions button,
-        .result-actions button {
+        .panel-actions button {
             font: inherit;
             padding: 8px 14px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background: #fff;
+            border: none;
+            border-radius: 10px;
+            background: #eef2f5;
+            color: #314253;
             cursor: pointer;
+            transition: transform 0.15s ease, background 0.15s ease;
         }
 
-        .sheet-actions button.primary,
-        .result-actions button.primary {
-            background: #007acc;
+        .panel-actions button:hover:not(:disabled) {
+            transform: translateY(-1px);
+        }
+
+        .panel-actions button.primary {
+            background: #5d87a8;
             color: #fff;
-            border-color: #007acc;
         }
 
-        .sheet-actions button:disabled {
-            color: #aaa;
+        .panel-actions button:disabled {
+            opacity: 0.45;
             cursor: default;
+        }
+
+        .wait-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 4px 2px;
+            text-align: center;
+        }
+
+        .orbit {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            margin-bottom: 10px;
+            animation: orbit-spin 1.15s linear infinite;
+        }
+
+        .orbit span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 12px;
+            height: 12px;
+            margin: -6px;
+            border-radius: 3px;
+            background: #5d87a8;
+            transform: rotate(calc(var(--i) * 90deg)) translateY(-24px);
+            animation: clockwise 1.15s linear infinite;
+            animation-delay: calc(var(--i) * -0.29s);
+        }
+
+        #thinkLabel {
+            min-height: 1.4em;
+            color: #526575;
+            line-height: 1.4;
+            transition: opacity 0.22s ease;
         }
 
         .pattern-grid {
             position: relative;
             width: 240px;
             height: 240px;
-            margin: 16px auto 0;
+            margin: 8px auto 0;
             touch-action: none;
         }
 
         .pattern-lines {
             position: absolute;
             inset: 0;
+            z-index: 1;
             width: 100%;
             height: 100%;
+            overflow: visible;
+            pointer-events: none;
         }
 
         .pattern-dot {
             position: absolute;
-            width: 22px;
-            height: 22px;
-            margin: -11px 0 0 -11px;
-            border: 2px solid #111;
+            z-index: 2;
+            width: 44px;
+            height: 44px;
+            margin: -22px 0 0 -22px;
+            border: none;
             border-radius: 50%;
-            background: #fff;
-            box-sizing: border-box;
+            background: transparent;
+            cursor: pointer;
         }
 
-        .pattern-dot.used {
-            background: #007acc;
-            border-color: #007acc;
+        .pattern-dot::after {
+            content: "";
+            position: absolute;
+            left: 13px;
+            top: 13px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #d5dee6;
+            transition: transform 0.18s cubic-bezier(0.2, 1.4, 0.4, 1), background 0.18s ease, box-shadow 0.18s ease;
         }
 
-        #thinking {
-            z-index: 30;
-            flex-direction: column;
-            background: #fff;
+        .pattern-dot:hover::after {
+            transform: scale(1.12);
+            background: #c5d3de;
         }
 
-        .think-label {
-            min-height: 1.4em;
-            font-size: 18px;
-            transition: opacity 0.35s ease;
+        .pattern-dot.used::after {
+            background: #5d87a8;
+            box-shadow: 0 0 0 7px rgba(93, 135, 168, 0.16);
+            transform: scale(1.08);
         }
 
-        .think-track {
-            width: min(420px, 80vw);
-            height: 4px;
-            margin-top: 22px;
-            background: #eee;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .think-bar {
-            height: 100%;
-            width: 0;
-            background: #007acc;
-            border-radius: 4px;
-        }
-
-        #resultCard {
-            margin: 0 0 16px;
-            padding: 14px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-
-        #resultCard[hidden] {
-            display: none;
+        .pattern-dot.hot::after {
+            animation: dot-pop 420ms cubic-bezier(0.2, 1.4, 0.4, 1);
         }
 
         #resultMessage {
             white-space: pre-wrap;
-            line-height: 1.45;
+            line-height: 1.5;
+            min-height: 1.4em;
         }
 
         .result-note {
             margin-top: 10px;
-            color: #555;
+            color: #6b7c8a;
         }
 
-        .result-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 14px;
+        @keyframes step-in {
+            from { opacity: 0; transform: translateX(22px); }
+            to { opacity: 1; transform: none; }
+        }
+
+        @keyframes step-in-back {
+            from { opacity: 0; transform: translateX(-22px); }
+            to { opacity: 1; transform: none; }
+        }
+
+        @keyframes orbit-spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes clockwise {
+            0%, 18% { opacity: 1; transform: rotate(calc(var(--i) * 90deg)) translateY(-24px) scale(1.15); }
+            45%, 100% { opacity: 0.28; transform: rotate(calc(var(--i) * 90deg)) translateY(-24px) scale(0.72); }
+        }
+
+        @keyframes dot-pop {
+            0% { transform: scale(0.65); }
+            55% { transform: scale(1.45); }
+            100% { transform: scale(1.08); }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <h2 style="margin: 0;">Schedule</h2>
-        <button id="editBtn" type="button">Edit</button>
-    </div>
+    <h2>Schedule</h2>
 
-    <div id="resultCard" hidden>
-        <div id="resultMessage"></div>
-        <div id="resultNote" class="result-note" hidden></div>
-        <div id="resultActions" class="result-actions" hidden>
-            <button id="pushBtn" class="primary" type="button">Commit &amp; Push</button>
-            <button id="cancelBtn" type="button">Cancel</button>
-        </div>
-    </div>
-    
-    <div style="margin-bottom: 20px;">
+    <div class="person-row">
+        <button id="editBtn" type="button" aria-label="Edit">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path d="M4 16.6V20h3.4L18.6 8.8l-3.4-3.4L4 16.6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+                <path d="M13.6 6.9l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+            </svg>
+        </button>
         <label style="margin-right: 15px;">Select person:</label>
         <button id="adaswiBtn" class="person-btn active">AB</button>
         <button id="aleksBtn" class="person-btn">AK</button>
@@ -323,34 +435,55 @@
         <div class="days-container" id="daysContainer"></div>
     </div>
 
-    <div id="sentenceOverlay" class="overlay" hidden>
-        <div class="sheet">
-            <h3>What should change?</h3>
-            <textarea id="sentenceInput" placeholder="I'll be at school on 12/11/2026, from 8 am till 5pm"></textarea>
-            <div class="sheet-actions">
-                <button id="sentenceClose" type="button">Close</button>
-                <button id="sentenceNext" class="primary" type="button" disabled>Next</button>
-            </div>
+    <div id="editor" class="editor" hidden>
+        <div class="editor-bar" id="editorBar">
+            <span id="stepLabel" class="step-label">Step 1/3</span>
+            <button id="editorClose" type="button" aria-label="Close">×</button>
         </div>
-    </div>
-
-    <div id="passwordOverlay" class="overlay" hidden>
-        <div class="sheet">
-            <h3>Password</h3>
-            <input id="passwordInput" type="password" autocomplete="off">
-            <div id="patternGrid" class="pattern-grid">
-                <svg class="pattern-lines" viewBox="0 0 240 240" aria-hidden="true"></svg>
-            </div>
-            <div class="sheet-actions">
-                <button id="passwordBack" type="button">Back</button>
-                <button id="passwordAccept" class="primary" type="button" disabled>Accept</button>
-            </div>
+        <div class="editor-stage" id="editorStage">
+            <section class="panel active" data-panel="sentence">
+                <h3>What should change?</h3>
+                <textarea id="sentenceInput" placeholder="I'll be at school on 12/11/2026, from 8 am till 5pm"></textarea>
+                <div class="panel-actions">
+                    <button id="sentenceNext" class="primary" type="button" disabled>Next</button>
+                </div>
+            </section>
+            <section class="panel" data-panel="password">
+                <h3>Password</h3>
+                <input id="passwordInput" type="password" autocomplete="off">
+                <div class="panel-actions">
+                    <button id="passwordBack" type="button">Back</button>
+                    <button id="passwordNext" class="primary" type="button" disabled>Next</button>
+                </div>
+            </section>
+            <section class="panel" data-panel="pattern">
+                <h3>Pattern</h3>
+                <div id="patternGrid" class="pattern-grid">
+                    <svg class="pattern-lines" viewBox="0 0 240 240" aria-hidden="true"></svg>
+                </div>
+                <div class="panel-actions">
+                    <button id="patternBack" type="button">Back</button>
+                    <button id="patternAccept" class="primary" type="button" disabled>Accept</button>
+                </div>
+            </section>
+            <section class="panel" data-panel="wait">
+                <div class="wait-body">
+                    <div class="orbit" aria-hidden="true">
+                        <span style="--i:0"></span>
+                        <span style="--i:1"></span>
+                        <span style="--i:2"></span>
+                        <span style="--i:3"></span>
+                    </div>
+                    <div id="thinkLabel"></div>
+                </div>
+            </section>
+            <section class="panel" data-panel="result">
+                <h3 id="resultTitle">Update</h3>
+                <div id="resultMessage"></div>
+                <div id="resultNote" class="result-note"></div>
+                <div class="panel-actions" id="resultActions"></div>
+            </section>
         </div>
-    </div>
-
-    <div id="thinking" class="overlay" hidden>
-        <div id="thinkLabel" class="think-label">Reading the timetable</div>
-        <div class="think-track"><div id="thinkBar" class="think-bar"></div></div>
     </div>
 
     <script src="script.js"></script>
