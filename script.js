@@ -28,6 +28,18 @@ async function loadPersonData(personName) {
     }
 }
 
+function applyImportedData(personName, data) {
+    currentPerson = personName;
+    document.getElementById("adaswiBtn").classList.remove("active");
+    document.getElementById("aleksBtn").classList.remove("active");
+    document.getElementById("saraBtn").classList.remove("active");
+    document.getElementById(personName + "Btn").classList.add("active");
+    evenWeekSchedule = data.evenWeekSchedule || {};
+    oddWeekSchedule = data.oddWeekSchedule || {};
+    customDays = data.customDays || {};
+    loadSchedule();
+}
+
 function switchPerson(personName) {
     currentPerson = personName;
     
@@ -87,6 +99,10 @@ function getWeekNumber(date) {
 
 function getCurrentWeekValue() {
     const today = startOfLocalDay(new Date());
+    const weekday = today.getDay();
+    if (weekday === 0 || weekday === 6) {
+        today.setDate(today.getDate() + (weekday === 6 ? 2 : 1));
+    }
 
     let current = getMonday(startOfLocalDay(startRange));
 
@@ -159,10 +175,11 @@ function timeToMinutes(time) {
 function renderSchedule(schedule) {
     const timeCol = document.getElementById("timeColumn");
     const daysCol = document.getElementById("daysContainer");
+    const dayHeaders = document.getElementById("dayHeaders");
     timeCol.innerHTML = "";
     daysCol.innerHTML = "";
-
-    const activityTotals = {}; // { "Math": totalMinutes }
+    dayHeaders.innerHTML = "";
+    timeCol.style.height = containerHeight + "px";
 
     // full hours labels
     for (let h = startHour; h <= endHour; h++) {
@@ -175,6 +192,11 @@ function renderSchedule(schedule) {
 
     // day columns
     days.forEach(day => {
+        const header = document.createElement("div");
+        header.className = "day-header";
+        header.textContent = day;
+        dayHeaders.appendChild(header);
+
         const dayDiv = document.createElement("div");
         dayDiv.className = "day-column";
         dayDiv.style.height = containerHeight + "px";
@@ -195,10 +217,6 @@ function renderSchedule(schedule) {
             const durationMin = endMin - startMin;
             const topPx = startMin / totalMinutes * containerHeight;
             const heightPx = durationMin / totalMinutes * containerHeight;
-
-            // accumulate weekly totals
-            if (activityTotals[lesson.name]) activityTotals[lesson.name] += durationMin;
-            else activityTotals[lesson.name] = durationMin;
 
             const block = document.createElement("div");
             block.className = "block";
@@ -222,6 +240,14 @@ function renderSchedule(schedule) {
         summaryDiv.style.marginTop = "20px";
         document.body.appendChild(summaryDiv);
     }
+
+    const activityTotals = {};
+    days.forEach(day => {
+        (schedule[day] || []).forEach(lesson => {
+            const durationMin = timeToMinutes(lesson.end) - timeToMinutes(lesson.start);
+            activityTotals[lesson.name] = (activityTotals[lesson.name] || 0) + durationMin;
+        });
+    });
 
     summaryDiv.innerHTML = "<h3>Weekly Activity Summary</h3>";
     const table = document.createElement("table");
