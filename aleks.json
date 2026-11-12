@@ -194,6 +194,26 @@
                 "name": "ill",
                 "color": "#c8c8c8"
             }
+        ],
+        "2026-11-13": [
+            {
+                "start": "08:30",
+                "end": "11:30",
+                "name": "Work",
+                "color": "#90ff9b"
+            },
+            {
+                "start": "12:00",
+                "end": "13:30",
+                "name": "School",
+                "color": "#fb6666"
+            },
+            {
+                "start": "14:00",
+                "end": "19:00",
+                "name": "Work",
+                "color": "#90ff9b"
+            }
         ]
     }
 }
